@@ -1,0 +1,116 @@
+$themes: (
+    ("one", #3B4664, #3b4664, #181F32, #fafafa, #3E4251, #252C46, #EAE3DB, #FFFFFF, #D13F30, #F96C5B, #647299, #A2B3E1, #fafafa),
+    ("two", #E6E6E6, #E6E6E6, #EEEEEE, #43433B, #43433B, #D3CDCD, #E5E4E0, #FFFFFF, #C85401, #FF8B38, #388187, #62B5BD, #43433B),
+    ("three", #17062A, #17062A, #1D0833, #E9D63D, #E9D63D, #1D0833, #331B4D, #6B34AC, #56077C, #8631B0, #00DECF, #94FFF9, #E9D63D)
+);
+
+@each $theme in $themes {
+    $class: nth($theme, 1);
+    $bg1: nth($theme, 2);
+    $bgcalc: nth($theme, 3);
+    $bgres: nth($theme, 4);
+    $color1: nth($theme, 5);
+    $btncolor: nth($theme, 6);
+    $bgbtns: nth($theme, 7);
+    $bgbtn: nth($theme, 8);
+    $bghover: nth($theme, 9);
+    $bgbtn2: nth($theme, 10);
+    $bghover2: nth($theme, 11);
+    $bgbtn3: nth($theme, 12);
+    $bghover3: nth($theme, 13);
+    $calc: nth($theme, 14);
+
+    .#{$class} {
+        background-color: $bg1;
+        .calc {
+            background-color: $bgcalc;
+            p {
+                color: $calc;
+            }
+            .result {
+                background-color: $bgres;
+                .prevoperand,
+                .currentoperand {
+                    color: $color1;
+                }
+            }
+            .theme button{
+                background-color:$bgbtn ;
+                color:$btncolor ;
+            }
+            .btns {
+                background-color: $bgbtns;
+                button {
+                    background-color: $bgbtn;
+                    color: $btncolor;
+                    &:hover {
+                        background-color: $bghover;
+                    }
+                }
+                .orange {
+                    background-color: $bgbtn2;
+                    &:hover {
+                        background-color: $bghover2;
+                    }
+                }
+                .blue {
+                    background-color: $bgbtn3;
+                    &:hover {
+                        background-color: $bghover3;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.App {
+    font-weight: 700;
+    min-height: 100vh;
+    .calc {
+        .result {
+            min-height: 15vh;
+            word-wrap: break-word;
+            word-break: break-all;
+            .prevoperand {
+                font-size: 25px;
+            }
+            .currentoperand {
+                font-size: 30px;
+            }
+        }
+        .btns {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(4, 22%);
+            justify-content: space-between;
+            row-gap: 1rem;
+            button {
+                font-weight: 700;
+                padding: 10px;
+                font-size: 25px;
+                border: none;
+            }
+            .span2 {
+                grid-column: span 2;
+            }
+        }
+    }
+}
+
+$incre: 110;
+
+@for $i from 1 through 7 {
+    @media (max-width: #{1300 - $i * $incre}px) {
+        .App{
+            .calc {
+            width: #{20% + $i * 10%} !important; 
+            .btns{
+                button{
+                    font-size: #{25-$i/2}px;
+                }
+            }
+        }
+        } 
+    }
+}
